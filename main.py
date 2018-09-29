@@ -38,8 +38,6 @@ def game(word, difficulty):
         max_points = len(word_list)
         print("Score board:\nPoints: {0}/{1}\nWPM: {2}\nTime: {3}\n".format(points, max_points, wpm, ttime))
         exit = input()
-        if exit == "Yes":
-            threading.stop()
 
 while __name__ == "__main__":
     rand_search = randint(0, len(search) -1)
