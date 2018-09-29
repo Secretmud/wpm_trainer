@@ -49,7 +49,7 @@ while __name__ == "__main__":
           "\t4. Extreme\n\n")
     diff = input()
     if diff == "1":
-        game(search[rand_search], 2))
+        game(search[rand_search], 2)
     if diff == "2":
         game(search[rand_search], 5)
     if diff == "3":
