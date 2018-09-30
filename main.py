@@ -4,21 +4,23 @@ import os
 from random import randint
 import threading
 
-
+class colors:
+    right = '\033[92m'
+    wrong = '\033[91m'
+    endc = '\033[0m'
 
 search = ["Donald Knuth", "Brian Kernighan", "Dennis Richie", "Richard Stallman", "Linus Torvalds"]
 
 def game(word, difficulty):
-    start_time = time()
     correct = []
     wrong = []
-    word_list = []
+    start_time = time()
     words = wikipedia.summary(word, sentences=difficulty)
+    word_list = []
     word_list.extend(words.split())
-    points = (len(correct) - len(wrong))
+
     if (len(correct)+len(wrong))< len(word_list):
         for i in word_list:
-            print(pressed)
             word_len_ans = ((len(correct)) + (len(wrong)))
             os.system('clear' or 'cls')
             strings = ' '.join(word_list)
@@ -27,16 +29,33 @@ def game(word, difficulty):
             print(ttime)
             print(word_len_ans, "/", len(word_list))
             test = input()
+            ind_place = word_list.index(i)
+            if test in strings:
+                x = (colors.right + i + colors.endc)
+            if test not in word_list:
+                y = (colors.wrong + i + colors.endc)
             if test in word_list:
+                word_list.insert(ind_place, x)
+                word_list.remove(i)
                 correct.append(test)
-            else:
+            elif test not in word_list:
+                word_list.insert(ind_place, y)
+                word_list.remove(i)
                 wrong.append(test)
-    if (len(correct)+len(wrong))>= len(word_list):
+
+    if (len(correct)+len(wrong)) == len(word_list):
+
         os.system('clear' or 'cls')
+        points = (len(correct)-len(wrong))
         percentage_correct = ((len(correct)/len(word_list)*100))
-        wpm = ((len(words)/int(ttime))*int(percentage_correct))
+        key_c = sum(len(i) for i in correct)
+        key_w = sum(len(i) for i in wrong)
+        key_t = key_c + key_w
+        wpm = ((key_t/(ttime/60))*int(percentage_correct))
         max_points = len(word_list)
+
         print("Score board:\nPoints: {0}/{1}\nWPM: {2}\nTime: {3}\n".format(points, max_points, wpm, ttime))
+        
         exit = input()
 
 while __name__ == "__main__":
@@ -56,10 +75,3 @@ while __name__ == "__main__":
         game(search[rand_search], 7)
     if diff == "4":
         game(search[rand_search], 9)
-    
-
-
-
-
-
-
