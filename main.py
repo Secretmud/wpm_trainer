@@ -51,10 +51,10 @@ def game(word, difficulty):
         key_c = sum(len(i) for i in correct)
         key_w = sum(len(i) for i in wrong)
         key_t = key_c + key_w
-        wpm = ((key_t/(ttime/60))*int(percentage_correct))
+        wpm = ((key_t/(ttime*0.0166667))
         max_points = len(word_list)
 
-        print("Score board:\nPoints: {0}/{1}\nWPM: {2}\nTime: {3}\n".format(points, max_points, wpm, ttime))
+        print("Score board:\nPoints: {0}/{1}\nPercentage correct {4}%\nWPM: {2}\nTime: {3}\n".format(points, max_points, wpm, ttime, percentage_correct))
         
         exit = input()
 
